@@ -1,19 +1,18 @@
 package com.pluralsight;
 
+import com.pluralsight.ToppingManager.Topping;
 import java.util.List;
 
 public class Sandwich extends MenuItem {
     private String bread;
     private String size;
-    private List<String> toppings;
-    private List<PremiumTopping> premiumToppings;
+    private List<Topping> toppings;
     private boolean isToasted;
-// Constructor
-    public Sandwich(String bread, String size, List<String> toppings, List<PremiumTopping> premiumToppings, boolean isToasted) {
+
+    public Sandwich(String bread, String size, List<Topping> toppings, boolean isToasted) {
         this.bread = bread;
         this.size = size;
         this.toppings = toppings;
-        this.premiumToppings = premiumToppings;
         this.isToasted = isToasted;
 
         // Set basePrice based on sandwich size
@@ -32,15 +31,13 @@ public class Sandwich extends MenuItem {
 
     @Override
     public double calculatePrice() {
-        double price = basePrice; // Start with the base price
+        double price = basePrice;
 
-        // Add the cost of each premium topping
-        for (PremiumTopping topping : premiumToppings) {
+        // Add the cost of each topping to the base price
+        for (Topping topping : toppings) {
             price += topping.getCost();
         }
 
         return price;
     }
-
 }
-
