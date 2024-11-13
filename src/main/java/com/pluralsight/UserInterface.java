@@ -59,7 +59,41 @@ public class UserInterface {
     //Methods
     public void showAddSandwichScreen() {
         System.out.println("Adding a Sandwich...");
-        // Code for adding sandwich  here
+        System.out.println("Creating a new sandwich...");
+
+        // Prompt for sandwich size
+        System.out.println("Select sandwich size:");
+        System.out.println("1) 4\" ($5.50)");
+        System.out.println("2) 8\" ($7.00)");
+        System.out.println("3) 12\" ($8.50)");
+        int sizeChoice = scanner.nextInt();
+        String size = switch (sizeChoice) {
+            case 1 -> "4\"";
+            case 2 -> "8\"";
+            case 3 -> "12\"";
+            default -> "8\""; // Default to 8" if input is invalid
+        };
+
+        // Prompt for bread type
+        System.out.println("Select bread type:");
+        System.out.println("1) White");
+        System.out.println("2) Wheat");
+        System.out.println("3) Rye");
+        System.out.println("4) Wrap");
+        int breadChoice = scanner.nextInt();
+        String bread = switch (breadChoice) {
+            case 1 -> "White";
+            case 2 -> "Wheat";
+            case 3 -> "Rye";
+            case 4 -> "Wrap";
+            default -> "White"; // Default to White if input is invalid
+        };
+
+        System.out.println("You chose a " + size + " sandwich on " + bread + " bread.");
+
+        // Placeholder for next step: choosing toppings
+        System.out.println("Next, you will select your toppings.");
+    }
     }
 
     public void showAddDrinkScreen() {
