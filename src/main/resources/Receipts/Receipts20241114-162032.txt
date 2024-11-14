@@ -1,0 +1,4 @@
+DELI-cious Sandwich Shop
+Order Date & Time: 2024-11-14 16:20
+Total Items: 3
+Total Price: $12.99

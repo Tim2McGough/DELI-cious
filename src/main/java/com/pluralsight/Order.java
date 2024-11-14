@@ -14,7 +14,11 @@ public class Order {
     public void addItem(MenuItem item) {
         items.add(item);
     }
-// does as it does. Calculate the price
+    public List<MenuItem> getItems() {
+        return items;
+    }
+
+    // does as it does. Calculate the price
     public void calculateTotalPrice() {
         double subtotal = items.stream().mapToDouble(MenuItem::calculatePrice).sum();
         totalPrice = subtotal * (1 + SALES_TAX_RATE);

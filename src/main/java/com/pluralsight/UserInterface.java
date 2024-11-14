@@ -79,6 +79,8 @@ public class UserInterface {
     private void checkout() {
         currentOrder.calculateTotalPrice();
         System.out.printf("Total (including tax): $%.2f\n", currentOrder.getTotalPrice());
+        ReceiptGenerator receiptGenerator = new ReceiptGenerator();
+        receiptGenerator.generateReceipt(currentOrder);
     }
 
     private void exit() {
