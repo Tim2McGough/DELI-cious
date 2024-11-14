@@ -23,16 +23,24 @@ public class ToppingManager {
 
     public static List<Topping> selectToppings() {
         List<Topping> selectedToppings = new ArrayList<>();
+
+        // Creates a for loop starting at the beginning of toppings +1 is for human readability
         for (int i = 0; i < TOPPINGS.size(); i++) {
             System.out.println((i + 1) + ") " + TOPPINGS.get(i).getName() +
                     (TOPPINGS.get(i).getCost() > 0 ? " (Additional $" + TOPPINGS.get(i).getCost() + ")" : ""));
+            // ln 30 ternary operator. Basically an if else. In this case it's checking if the cost is above 0, and if it is it executes whats before the colon.
+            // This allows premium toppings to display their cost
         }
+
         System.out.println("0) No more toppings");
 
         int choice;
         while ((choice = scanner.nextInt()) != 0) {
-            if (choice > 0 && choice <= TOPPINGS.size()) {
-                selectedToppings.add(TOPPINGS.get(choice - 1));
+            if (choice <= TOPPINGS.size()) {
+                Topping topping = TOPPINGS.get(choice - 1);
+                selectedToppings.add(topping);
+                System.out.println("Added " + topping.getName() +
+                        (topping.getCost() > 0 ? " (Additional $" + topping.getCost() + ")" : ""));
             } else {
                 System.out.println("Invalid choice, try again.");
             }
