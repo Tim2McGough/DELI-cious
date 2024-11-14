@@ -1,12 +1,13 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Scanner;
 
 public class ToppingManager {
+    private static final Scanner scanner = new Scanner(System.in);
 
-    // All toppings (regular and premium together)
     private static final List<Topping> TOPPINGS = Arrays.asList(
             new Topping("Lettuce", 0.0),
             new Topping("Tomato", 0.0),
@@ -20,26 +21,25 @@ public class ToppingManager {
             new Topping("Avocado", 1.25)
     );
 
-    // Method to get all toppings
-    public static List<Topping> getToppings() {
-        return TOPPINGS;
+    public static List<Topping> selectToppings() {
+        List<Topping> selectedToppings = new ArrayList<>();
+        for (int i = 0; i < TOPPINGS.size(); i++) {
+            System.out.println((i + 1) + ") " + TOPPINGS.get(i).getName() +
+                    (TOPPINGS.get(i).getCost() > 0 ? " (Additional $" + TOPPINGS.get(i).getCost() + ")" : ""));
+        }
+        System.out.println("0) No more toppings");
+
+        int choice;
+        while ((choice = scanner.nextInt()) != 0) {
+            if (choice > 0 && choice <= TOPPINGS.size()) {
+                selectedToppings.add(TOPPINGS.get(choice - 1));
+            } else {
+                System.out.println("Invalid choice, try again.");
+            }
+        }
+        return selectedToppings;
     }
 
-    // Method to filter regular toppings (if needed)
-    public static List<Topping> getRegularToppings() {
-        return TOPPINGS.stream()
-                .filter(topping -> topping.getCost() == 0.0)
-                .collect(Collectors.toList());
-    }
-
-    // Method to filter premium toppings (if needed)
-    public static List<Topping> getPremiumToppings() {
-        return TOPPINGS.stream()
-                .filter(topping -> topping.getCost() > 0.0)
-                .collect(Collectors.toList());
-    }
-
-    // Inner Topping class to represent each topping (name + cost)
     public static class Topping {
         private final String name;
         private final double cost;
